@@ -1,0 +1,67 @@
+If you want, create a copy of your JavaScript file. Then, to avoid confusion, delete all the comments.
+
+Let's do some human debugging. We'll step through each line as though we had to calculate it ourselves.
+
+First, we declare an array of possible picks and set the scores to 0.
+So far so good.
+
+We then define the playRound(), game(), and computerPlay() functions.
+
+Now, we get into the actual execution of the code:
+
+let computerSelection = computerPlay();
+This sets computerSelection to a random value in the 'pick' array.
+-- But this is not the place to do that. Continue on to see why.
+
+Then we call the game() function.
+So scroll up to game().
+
+While playerScore and computerScore are less than 5, continue.
+Good. We're starting a new round.
+
+So, every round, we:
+  Set playerSelection to the prompt input.
+  Perfect.
+
+  But we also need to set the computerSelection every round, right?
+  This is where we should set:
+
+  let computerSelection = computerPlay();
+
+  That way the computer makes a new random selection every round.
+
+  Then we call playRound(), passing in the parameters playerSelection and computerSelection.
+
+So scroll up to playRound()
+
+In playRound():
+  We passed in playerSelection and computerSelection, but playRound() is not set up to accept those parameters.
+
+
+  So, back to the playRound function:
+  In order to compare playerSelection and computerSelection, we have to pass those parameters into playRound.
+  Like so:
+  function playRound(playerSelection, computerSelection) {
+    blah, blah, blah
+  }
+
+  The rest of the logic in your playRound function is spot on! Just remember that the way you declare your function determines the order in which you have to pass your parameters.
+
+That's literally all you have to fix. Now, let me clarify variable scope and parameters.
+
+ON SCOPE
+
+In JavaScript, the 'let' keyword means that that variable only exists within that code block. Whether it's within a function, an if statement, a for loop, etc...
+  once that block ends, the variable ceases to exist. That's a good thing, because it saves on RAM, and it makes hackers' jobs harder.
+
+ON PARAMETERS
+
+The parameters of a function are a lot like variables. Whatever you provide in the function call is passed into the function itself.
+For example:
+  function sum(a, b) {
+    return a + b;
+  }
+
+  You would call it like: sum(4, 5);
+
+  That calls sum, and sets the parameter a to 4, b to 5.
